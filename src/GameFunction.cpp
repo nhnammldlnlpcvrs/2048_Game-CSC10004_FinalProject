@@ -1,4 +1,4 @@
-#include "GameFunction.h"
+﻿#include "GameFunction.h"
 #include <iostream>
 #include <fstream>
 
@@ -167,6 +167,9 @@ void saveAccount(string fileName, User user, matrixStack& undo, matrixStack& red
     out.write(reinterpret_cast<char*>(&speed), sizeof(speed));
     out.write(reinterpret_cast<char*>(&countdown), sizeof(countdown));
 
+    // Lưu trạng thái của các ma trận trong stack undo
+    undo.writeToFile(out);
+
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
             out.write(reinterpret_cast<char*>(&matrix[i][j]), sizeof(int));
@@ -197,28 +200,27 @@ void readAccount(string fileName, User& user, matrixStack& undo, matrixStack& re
         for (int j = 0; j < n; ++j)
             in.read(reinterpret_cast<char*>(&matrix[i][j]), sizeof(int));
 
+    undo.readFromFile(in);
     in.close();
 }
 
 void processUndo(int xo, int yo, int** matrix, int n, int undo_redo, matrixStack& undo, matrixStack& redo, User& user, Time time, int goal, Top20List list) {
     if (!undo.isEmpty()) {
         redo.push(matrix, n);
-        int prevSize;
-        int** prev = undo.pop(prevSize);
+        Matrix prev = undo.pop();
         freeMatrix(matrix, n);
-        n = prevSize;
-        matrix = prev;
+        n = prev.n;
+        matrix = prev.matrix;
     }
 }
 
 void processRedo(int xo, int yo, int** matrix, int n, int undo_redo, matrixStack& undo, matrixStack& redo, User& user, Time time, int goal, Top20List list) {
     if (!redo.isEmpty()) {
         undo.push(matrix, n);
-        int nextSize;
-        int** next = redo.pop(nextSize);
+        Matrix next = redo.pop();
         freeMatrix(matrix, n);
-        n = nextSize;
-        matrix = next;
+        n = next.n;
+        matrix = next.matrix;
     }
 }
 

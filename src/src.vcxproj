@@ -136,6 +136,7 @@
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="GameFunction.cpp" />
     <ClCompile Include="MatrixStack.cpp" />
+    <ClCompile Include="Resume.cpp" />
     <ClCompile Include="src.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="TopPlayer.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Audio.h" />
     <ClInclude Include="GameFunction.h" />
     <ClInclude Include="MatrixStack.h" />
+    <ClInclude Include="Resume.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="TopPlayer.h" />
     <ClInclude Include="User.h" />

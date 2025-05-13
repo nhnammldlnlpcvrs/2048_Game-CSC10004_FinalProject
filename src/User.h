@@ -9,4 +9,9 @@ struct User {
     User(std::string user = "", std::string pass = "", unsigned int s = 0)
         : username(user), passwordHash(pass), score(s) {
     }
+    void writeToFile(std::ofstream& out) const;
+    void readFromFile(std::ifstream& in);
 };
+
+
+

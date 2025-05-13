@@ -1,17 +1,33 @@
-﻿#pragma once
-#include <vector>
+﻿#ifndef MATRIXSTACK_H
+#define MATRIXSTACK_H
+
+#include <fstream>
+
+struct Matrix {
+    int n;
+    int** matrix;
+};
 
 class matrixStack {
 private:
-    std::vector<int**> data;
-    std::vector<int> sizes; // lưu kích thước ma trận tương ứng với từng frame
+    static const int MAX_SIZE = 100;
+    Matrix stack[MAX_SIZE];   // Mảng lưu các ma trận
+    int topIndex;             // Vị trí trên cùng của stack
 
 public:
-    matrixStack();
-    ~matrixStack();
+    matrixStack();  // constructor
+    ~matrixStack(); // destructor
 
-    void push(int** matrix, int n);    // Lưu ma trận vào stack
-    int** pop(int& n);                 // Lấy ma trận ra khỏi stack
-    bool isEmpty() const;             // Stack có rỗng không
-    void clear();                      // Xoá toàn bộ stack
+    bool isEmpty() const;
+    bool isFull() const;
+    void push(const Matrix& m);
+    Matrix pop();
+    Matrix top() const;
+    void clear();
+
+    // Hàm ghi/đọc từ file
+    void writeToFile(std::ofstream& out) const;
+    void readFromFile(std::ifstream& in);
 };
+
+#endif
