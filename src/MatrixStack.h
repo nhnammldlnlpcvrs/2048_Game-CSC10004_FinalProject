@@ -1,33 +1,27 @@
 ﻿#ifndef MATRIXSTACK_H
 #define MATRIXSTACK_H
+#include "Matrix.h"    // Cần để dùng struct Matrix
+#include <fstream>      // Cần để dùng ofstream / ifstream
 
-#include <fstream>
-
-struct Matrix {
-    int n;
-    int** matrix;
-};
+const int MAX_STACK_SIZE = 100;
 
 class matrixStack {
 private:
-    static const int MAX_SIZE = 100;
-    Matrix stack[MAX_SIZE];   // Mảng lưu các ma trận
-    int topIndex;             // Vị trí trên cùng của stack
+    Matrix stack[MAX_STACK_SIZE];
+    int topIndex;
 
 public:
-    matrixStack();  // constructor
-    ~matrixStack(); // destructor
+    matrixStack();                      // Constructor
 
-    bool isEmpty() const;
-    bool isFull() const;
-    void push(const Matrix& m);
-    Matrix pop();
-    Matrix top() const;
-    void clear();
+    bool isEmpty() const;              // Kiểm tra rỗng
+    bool isFull() const;               // Kiểm tra đầy
 
-    // Hàm ghi/đọc từ file
-    void writeToFile(std::ofstream& out) const;
-    void readFromFile(std::ifstream& in);
+    void push(const Matrix& m);        // Đẩy ma trận vào stack
+    Matrix pop();                      // Lấy ma trận ra khỏi stack
+    void clear();                      // Xóa toàn bộ stack
+
+    void writeToFile(std::ofstream& outFile) const;   // Ghi stack vào file
+    void readFromFile(std::ifstream& inFile);         // Đọc stack từ file
 };
 
 #endif
