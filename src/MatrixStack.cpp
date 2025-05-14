@@ -3,8 +3,15 @@
 
 matrixStack::matrixStack() {
     topIndex = -1;
-}
 
+    for (int i = 0; i < MAX_STACK_SIZE; ++i) {
+        for (int r = 0; r < SIZE; ++r) {
+            for (int c = 0; c < SIZE; ++c) {
+                stack[i].matrix[r][c] = 0;
+            }
+        }
+    }
+}
 bool matrixStack::isEmpty() const {
     return topIndex == -1;
 }

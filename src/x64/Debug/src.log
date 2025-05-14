@@ -1,4 +1,5 @@
-﻿  Audio.cpp
+﻿  Scanning sources for module dependencies...
+  Audio.cpp
 C:\SFML\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
   (compiling source file 'Audio.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.43.34808\include\stdexcept(100,19):
@@ -58,89 +59,45 @@ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.43.348
           ]
   
   GameFunction.cpp
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(209,14): error C2660: 'matrixStack::push': function does not take 2 arguments
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\MatrixStack.h(23,10):
+C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(233,14): error C2660: 'matrixStack::push': function does not take 2 arguments
+      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\MatrixStack.h(19,10):
       see declaration of 'matrixStack::push'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(209,14):
+      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(233,14):
       while trying to match the argument list '(int **, int)'
   
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(219,14): error C2660: 'matrixStack::push': function does not take 2 arguments
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\MatrixStack.h(23,10):
+C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(236,18): error C2039: 'n': is not a member of 'Matrix'
+      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\Matrix.h(6,8):
+      see declaration of 'Matrix'
+  
+C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(237,22): error C2440: '=': cannot convert from 'int [4][4]' to 'int **'
+      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(237,22):
+      Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+  
+C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(243,14): error C2660: 'matrixStack::push': function does not take 2 arguments
+      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\MatrixStack.h(19,10):
       see declaration of 'matrixStack::push'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(219,14):
+      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(243,14):
       while trying to match the argument list '(int **, int)'
+  
+C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(246,18): error C2039: 'n': is not a member of 'Matrix'
+      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\Matrix.h(6,8):
+      see declaration of 'Matrix'
+  
+C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(247,22): error C2440: '=': cannot convert from 'int [4][4]' to 'int **'
+      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(247,22):
+      Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+  
+C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(256,24): error C2248: 'User::username': cannot access private member declared in class 'User'
+      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.h(9,17):
+      see declaration of 'User::username'
+      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.h(7,7):
+      see declaration of 'User'
+  
+C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(256,39): error C2248: 'User::score': cannot access private member declared in class 'User'
+      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.h(11,9):
+      see declaration of 'User::score'
+      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.h(7,7):
+      see declaration of 'User'
   
   User.cpp
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(1,6): error C2653: 'User': is not a class or namespace name
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(1,29): error C2039: 'ofstream': is not a member of 'std'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\predefined C++ types (compiler internal)(357,11):
-      see declaration of 'std'
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(1,12): error C2182: 'writeToFile': this use of 'void' is not valid
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(1,29): error C2065: 'ofstream': undeclared identifier
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(1,39): error C2065: 'out': undeclared identifier
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(1,44): error C2143: syntax error: missing ';' before 'const'
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(1,50): error C2447: '{': missing function header (old-style formal list?)
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(13,6): error C2653: 'User': is not a class or namespace name
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(13,30): error C2039: 'ifstream': is not a member of 'std'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\predefined C++ types (compiler internal)(357,11):
-      see declaration of 'std'
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(13,12): error C2182: 'readFromFile': this use of 'void' is not valid
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(13,30): error C2065: 'ifstream': undeclared identifier
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(13,40): error C2065: 'in': undeclared identifier
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(13,44): error C2143: syntax error: missing ';' before '{'
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(15,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(15,7): error C3484: syntax error: expected '->' before the return type
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(15,8): error C3613: missing return type after '->' ('int' assumed)
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(15,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(15,8): error C2146: syntax error: missing ';' before identifier 'read'
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(16,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(16,13): error C3484: syntax error: expected '->' before the return type
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(16,14): error C3613: missing return type after '->' ('int' assumed)
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(16,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(16,14): error C2146: syntax error: missing ';' before identifier 'resize'
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(17,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(17,7): error C3484: syntax error: expected '->' before the return type
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(17,8): error C3613: missing return type after '->' ('int' assumed)
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(17,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(17,5): error C2086: 'int in': redefinition
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(15,5):
-      see declaration of 'in'
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(17,8): error C2146: syntax error: missing ';' before identifier 'read'
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(19,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(19,7): error C3484: syntax error: expected '->' before the return type
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(19,8): error C3613: missing return type after '->' ('int' assumed)
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(19,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(19,5): error C2086: 'int in': redefinition
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(15,5):
-      see declaration of 'in'
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(19,8): error C2146: syntax error: missing ';' before identifier 'read'
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(20,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(20,13): error C3484: syntax error: expected '->' before the return type
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(20,14): error C3613: missing return type after '->' ('int' assumed)
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(20,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(20,14): error C2146: syntax error: missing ';' before identifier 'resize'
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(21,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(21,7): error C3484: syntax error: expected '->' before the return type
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(21,8): error C3613: missing return type after '->' ('int' assumed)
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(21,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(21,5): error C2086: 'int in': redefinition
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(15,5):
-      see declaration of 'in'
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(21,8): error C2146: syntax error: missing ';' before identifier 'read'
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(23,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(23,7): error C3484: syntax error: expected '->' before the return type
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(23,8): error C3613: missing return type after '->' ('int' assumed)
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(23,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(23,5): error C2086: 'int in': redefinition
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(15,5):
-      see declaration of 'in'
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(23,8): error C2146: syntax error: missing ';' before identifier 'read'
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(24,1): error C2059: syntax error: '}'
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.cpp(24,1): error C2143: syntax error: missing ';' before '}'
   Generating Code...

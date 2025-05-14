@@ -154,22 +154,30 @@ void saveAccount(string fileName, User user, matrixStack& undo, matrixStack& red
     ofstream out(fileName, ios::binary);
     if (!out) return;
 
-    size_t nameLen = user.username.length();
-    size_t passLen = user.passwordHash.length();
+    // Ghi thông tin user
+    size_t nameLen = user.getUsername().length();
+    size_t passLen = user.getPassword().length();
+
     out.write(reinterpret_cast<char*>(&nameLen), sizeof(size_t));
-    out.write(user.username.c_str(), nameLen);
+    out.write(user.getUsername().c_str(), nameLen);
+
     out.write(reinterpret_cast<char*>(&passLen), sizeof(size_t));
-    out.write(user.passwordHash.c_str(), passLen);
-    out.write(reinterpret_cast<char*>(&user.score), sizeof(user.score));
+    out.write(user.getPassword().c_str(), passLen);
+
+    int score = user.getScore();
+    out.write(reinterpret_cast<char*>(&score), sizeof(int));
+
+    // Ghi thông tin cấu hình trò chơi
     out.write(reinterpret_cast<char*>(&n), sizeof(n));
     out.write(reinterpret_cast<char*>(&goal), sizeof(goal));
     out.write(reinterpret_cast<char*>(&undo_redo), sizeof(undo_redo));
     out.write(reinterpret_cast<char*>(&speed), sizeof(speed));
     out.write(reinterpret_cast<char*>(&countdown), sizeof(countdown));
 
-    // Lưu trạng thái của các ma trận trong stack undo
+    // Lưu stack undo
     undo.writeToFile(out);
 
+    // Lưu ma trận hiện tại
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
             out.write(reinterpret_cast<char*>(&matrix[i][j]), sizeof(int));
@@ -181,30 +189,46 @@ void readAccount(string fileName, User& user, matrixStack& undo, matrixStack& re
     ifstream in(fileName, ios::binary);
     if (!in) return;
 
+    // Đọc username
     size_t nameLen, passLen;
     in.read(reinterpret_cast<char*>(&nameLen), sizeof(size_t));
-    user.username.resize(nameLen);
-    in.read(&user.username[0], nameLen);
+    string username(nameLen, ' ');
+    in.read(&username[0], nameLen);
+
+    // Đọc password
     in.read(reinterpret_cast<char*>(&passLen), sizeof(size_t));
-    user.passwordHash.resize(passLen);
-    in.read(&user.passwordHash[0], passLen);
-    in.read(reinterpret_cast<char*>(&user.score), sizeof(user.score));
+    string password(passLen, ' ');
+    in.read(&password[0], passLen);
+
+    // Gán lại cho user
+    user.setUsername(username);
+    user.setPassword(password);
+
+    int score;
+    in.read(reinterpret_cast<char*>(&score), sizeof(int));
+    user.setScore(score);
+
+    // Đọc thông tin game
     in.read(reinterpret_cast<char*>(&n), sizeof(n));
     in.read(reinterpret_cast<char*>(&goal), sizeof(goal));
     in.read(reinterpret_cast<char*>(&undo_redo), sizeof(undo_redo));
     in.read(reinterpret_cast<char*>(&speed), sizeof(speed));
     in.read(reinterpret_cast<char*>(&countdown), sizeof(countdown));
 
+    // Tạo lại ma trận
     makeMatrix(matrix, n);
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
             in.read(reinterpret_cast<char*>(&matrix[i][j]), sizeof(int));
 
+    // Đọc lại undo stack
     undo.readFromFile(in);
+
     in.close();
 }
 
-void processUndo(int xo, int yo, int** matrix, int n, int undo_redo, matrixStack& undo, matrixStack& redo, User& user, Time time, int goal, Top20List list) {
+
+void processUndo(int xo, int yo, int**& matrix, int& n, int undo_redo, matrixStack& undo, matrixStack& redo, User& user, Time time, int goal, Top20List list) {
     if (!undo.isEmpty()) {
         redo.push(matrix, n);
         Matrix prev = undo.pop();
@@ -214,7 +238,7 @@ void processUndo(int xo, int yo, int** matrix, int n, int undo_redo, matrixStack
     }
 }
 
-void processRedo(int xo, int yo, int** matrix, int n, int undo_redo, matrixStack& undo, matrixStack& redo, User& user, Time time, int goal, Top20List list) {
+void processRedo(int xo, int yo, int**& matrix, int& n, int undo_redo, matrixStack& undo, matrixStack& redo, User& user, Time time, int goal, Top20List list) {
     if (!redo.isEmpty()) {
         undo.push(matrix, n);
         Matrix next = redo.pop();
@@ -223,6 +247,7 @@ void processRedo(int xo, int yo, int** matrix, int n, int undo_redo, matrixStack
         matrix = next.matrix;
     }
 }
+
 
 bool processExit(User user, matrixStack& undo, matrixStack& redo, int** matrix, int n, int goal, int undo_redo, int speed, int countdown, Top20List& list) {
     m.lock();
