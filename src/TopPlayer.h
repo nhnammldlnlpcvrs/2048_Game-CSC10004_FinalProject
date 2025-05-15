@@ -5,7 +5,10 @@
 
 struct PlayerRecord {
     std::string username;
-    unsigned int score;
+    unsigned int score = 0;
+
+    PlayerRecord() : username(""), score(0) {}
+    PlayerRecord(const std::string& user, unsigned int scr) : username(user), score(scr) {}
 };
 
 class Top20List {

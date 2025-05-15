@@ -1,3 +1,6 @@
 ﻿  Scanning sources for module dependencies...
+  GameFunction.cpp
+  TopPlayer.cpp
+  Generating Code...
 GameFunction.obj : error LNK2001: unresolved external symbol "class std::mutex m" (?m@@3Vmutex@std@@A)
 C:\Users\nghoo\OneDrive\Documents\CSC10004\src\x64\Debug\src.exe : fatal error LNK1120: 1 unresolved externals

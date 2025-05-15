@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="GameFunction.cpp" />
     <ClCompile Include="MatrixStack.cpp" />
+    <ClCompile Include="Mutex.cpp" />
     <ClCompile Include="Mutex.h" />
     <ClCompile Include="Resume.cpp" />
     <ClCompile Include="src.cpp" />
