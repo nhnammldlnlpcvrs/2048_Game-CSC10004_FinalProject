@@ -14,7 +14,7 @@ void User::writeToFile(std::ofstream& out) const {
 }
 
 void User::readFromFile(std::ifstream& in) {
-    size_t len;
+    size_t len = 0;
     in.read(reinterpret_cast<char*>(&len), sizeof(len));
     username.resize(len);
     in.read(&username[0], len);

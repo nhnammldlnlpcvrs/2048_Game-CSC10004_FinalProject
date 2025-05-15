@@ -133,7 +133,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="GameFunction.cpp" />
     <ClCompile Include="MatrixStack.cpp" />
     <ClCompile Include="Mutex.h" />
@@ -144,7 +143,6 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Audio.h" />
     <ClInclude Include="GameFunction.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MatrixStack.h" />

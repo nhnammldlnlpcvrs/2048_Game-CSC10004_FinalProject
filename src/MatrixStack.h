@@ -12,14 +12,14 @@ struct MatrixWithScore {
 
 class matrixStack {
 private:
-    std::stack<MatrixWithScore> data; // sửa tên từ `stack` tránh trùng std::stack
+    std::stack<MatrixWithScore> data; 
 
 public:
     void push(const Matrix& matrix, int score);
     bool isEmpty() const;
     MatrixWithScore pop();
 
-    void writeToFile(std::ofstream& out);
+    void writeToFile(std::ofstream& out) const; // Add 'const' to match the definition
     void readFromFile(std::ifstream& in);
 };
 

@@ -2,9 +2,7 @@
 
 // Thêm một bản sao ma trận và điểm vào stack
 void matrixStack::push(const Matrix& matrix, int score) {
-    MatrixWithScore item;
-    item.matrix = matrix;
-    item.score = score;
+    MatrixWithScore item = { matrix, score }; // Initialize with provided values
     data.push(item);
 }
 
@@ -25,7 +23,7 @@ MatrixWithScore matrixStack::pop() {
 }
 
 // Ghi toàn bộ stack vào file (từ top đến bottom)
-void matrixStack::writeToFile(std::ofstream& out) {
+void matrixStack::writeToFile(std::ofstream& out) const { // Made const
     std::stack<MatrixWithScore> temp = data;
 
     int size = (int)temp.size();
@@ -41,19 +39,20 @@ void matrixStack::writeToFile(std::ofstream& out) {
 
 // Đọc toàn bộ stack từ file (và phục hồi lại đúng thứ tự)
 void matrixStack::readFromFile(std::ifstream& in) {
+    MatrixWithScore item = { {}, 0 }; // Initialize with default values
     int size = 0;
     in.read(reinterpret_cast<char*>(&size), sizeof(int));
 
     std::stack<MatrixWithScore> temp;
 
     for (int i = 0; i < size; ++i) {
-        MatrixWithScore item;
+        MatrixWithScore item = { {}, 0 }; // Ensure item is initialized
         in.read(reinterpret_cast<char*>(&item.matrix), sizeof(Matrix));
         in.read(reinterpret_cast<char*>(&item.score), sizeof(int));
         temp.push(item);
     }
 
-    // Đảo ngược lại đúng thứ tự (bottom -> top)
+    // Reverse the stack to restore the correct order (bottom -> top)
     while (!temp.empty()) {
         data.push(temp.top());
         temp.pop();
