@@ -1,52 +1,61 @@
 ﻿#include "MatrixStack.h"
-#include <fstream>
 
-matrixStack::matrixStack() {
-    topIndex = -1;
-
-    for (int i = 0; i < MAX_STACK_SIZE; ++i) {
-        for (int r = 0; r < SIZE; ++r) {
-            for (int c = 0; c < SIZE; ++c) {
-                stack[i].matrix[r][c] = 0;
-            }
-        }
-    }
+// Thêm một bản sao ma trận và điểm vào stack
+void matrixStack::push(const Matrix& matrix, int score) {
+    MatrixWithScore item;
+    item.matrix = matrix;
+    item.score = score;
+    data.push(item);
 }
+
+// Trả về true nếu stack trống
 bool matrixStack::isEmpty() const {
-    return topIndex == -1;
+    return data.empty();
 }
 
-bool matrixStack::isFull() const {
-    return topIndex >= MAX_STACK_SIZE - 1;
+// Lấy phần tử đầu và xóa khỏi stack
+MatrixWithScore matrixStack::pop() {
+    if (data.empty()) {
+        // Trả về một giá trị mặc định nếu stack rỗng
+        return MatrixWithScore{ {}, 0 };
+    }
+    MatrixWithScore top = data.top();
+    data.pop();
+    return top;
 }
 
-void matrixStack::push(const Matrix& m) {
-    if (!isFull()) {
-        stack[++topIndex] = m;
+// Ghi toàn bộ stack vào file (từ top đến bottom)
+void matrixStack::writeToFile(std::ofstream& out) {
+    std::stack<MatrixWithScore> temp = data;
+
+    int size = (int)temp.size();
+    out.write(reinterpret_cast<char*>(&size), sizeof(int));
+
+    while (!temp.empty()) {
+        MatrixWithScore item = temp.top();
+        temp.pop();
+        out.write(reinterpret_cast<char*>(&item.matrix), sizeof(Matrix));
+        out.write(reinterpret_cast<char*>(&item.score), sizeof(int));
     }
 }
 
-Matrix matrixStack::pop() {
-    if (!isEmpty()) {
-        return stack[topIndex--];
+// Đọc toàn bộ stack từ file (và phục hồi lại đúng thứ tự)
+void matrixStack::readFromFile(std::ifstream& in) {
+    int size = 0;
+    in.read(reinterpret_cast<char*>(&size), sizeof(int));
+
+    std::stack<MatrixWithScore> temp;
+
+    for (int i = 0; i < size; ++i) {
+        MatrixWithScore item;
+        in.read(reinterpret_cast<char*>(&item.matrix), sizeof(Matrix));
+        in.read(reinterpret_cast<char*>(&item.score), sizeof(int));
+        temp.push(item);
     }
-    Matrix empty;
-    for (int i = 0; i < SIZE; ++i)
-        for (int j = 0; j < SIZE; ++j)
-            empty.matrix[i][j] = 0;
-    return empty;
-}
 
-void matrixStack::clear() {
-    topIndex = -1;
-}
-
-void matrixStack::writeToFile(std::ofstream& outFile) const {
-    outFile.write(reinterpret_cast<const char*>(&topIndex), sizeof(topIndex));
-    outFile.write(reinterpret_cast<const char*>(stack), sizeof(Matrix) * (topIndex + 1));
-}
-
-void matrixStack::readFromFile(std::ifstream& inFile) {
-    inFile.read(reinterpret_cast<char*>(&topIndex), sizeof(topIndex));
-    inFile.read(reinterpret_cast<char*>(stack), sizeof(Matrix) * (topIndex + 1));
+    // Đảo ngược lại đúng thứ tự (bottom -> top)
+    while (!temp.empty()) {
+        data.push(temp.top());
+        temp.pop();
+    }
 }

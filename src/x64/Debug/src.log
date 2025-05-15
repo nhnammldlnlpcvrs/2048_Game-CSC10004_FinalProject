@@ -1,12 +1,5 @@
 ﻿  Scanning sources for module dependencies...
   Audio.cpp
-C:\SFML\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
-  (compiling source file 'Audio.cpp')
-      C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.43.34808\include\stdexcept(100,19):
-      see declaration of 'std::runtime_error'
-      C:\SFML\SFML-3.0.0\include\SFML\System\Exception.hpp(41,23):
-      see declaration of 'sf::Exception'
-  
 C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.43.34808\include\utility(479,17): error C2512: 'sf::Sound::Sound': no appropriate default constructor available
   (compiling source file 'Audio.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.43.34808\include\utility(479,17):
@@ -58,46 +51,3 @@ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.43.348
               _Tuple2=std::tuple<>
           ]
   
-  GameFunction.cpp
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(233,14): error C2660: 'matrixStack::push': function does not take 2 arguments
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\MatrixStack.h(19,10):
-      see declaration of 'matrixStack::push'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(233,14):
-      while trying to match the argument list '(int **, int)'
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(236,18): error C2039: 'n': is not a member of 'Matrix'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\Matrix.h(6,8):
-      see declaration of 'Matrix'
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(237,22): error C2440: '=': cannot convert from 'int [4][4]' to 'int **'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(237,22):
-      Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(243,14): error C2660: 'matrixStack::push': function does not take 2 arguments
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\MatrixStack.h(19,10):
-      see declaration of 'matrixStack::push'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(243,14):
-      while trying to match the argument list '(int **, int)'
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(246,18): error C2039: 'n': is not a member of 'Matrix'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\Matrix.h(6,8):
-      see declaration of 'Matrix'
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(247,22): error C2440: '=': cannot convert from 'int [4][4]' to 'int **'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(247,22):
-      Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(256,24): error C2248: 'User::username': cannot access private member declared in class 'User'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.h(9,17):
-      see declaration of 'User::username'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.h(7,7):
-      see declaration of 'User'
-  
-C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\GameFunction.cpp(256,39): error C2248: 'User::score': cannot access private member declared in class 'User'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.h(11,9):
-      see declaration of 'User::score'
-      C:\Users\nghoo\OneDrive\Documents\CSC10004\src\src\User.h(7,7):
-      see declaration of 'User'
-  
-  User.cpp
-  Generating Code...
