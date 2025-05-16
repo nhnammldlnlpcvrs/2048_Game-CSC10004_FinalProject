@@ -1,3 +1,4 @@
 ﻿#include "Mutex.h"
 
-std::mutex myMutex;  // Định nghĩa biến myMutex ở đây
+// Định nghĩa biến mutex toàn cục
+std::mutex m;
