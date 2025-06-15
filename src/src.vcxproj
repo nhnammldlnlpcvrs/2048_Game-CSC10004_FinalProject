@@ -134,21 +134,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameFunction.cpp" />
+    <ClCompile Include="Global.cpp" />
+    <ClCompile Include="Logic.cpp" />
     <ClCompile Include="MatrixStack.cpp" />
     <ClCompile Include="Mutex.cpp" />
     <ClCompile Include="Mutex.h" />
+    <ClCompile Include="Rendered.cpp" />
     <ClCompile Include="Resume.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="src.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="TopPlayer.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GameFunction.h" />
+    <ClInclude Include="Global.h" />
+    <ClInclude Include="Logic.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MatrixStack.h" />
+    <ClInclude Include="Rendered.h" />
     <ClInclude Include="Resume.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="TopPlayer.h" />
     <ClInclude Include="User.h" />
