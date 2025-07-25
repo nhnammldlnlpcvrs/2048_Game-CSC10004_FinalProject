@@ -1,61 +1,78 @@
-#include "Resume.h"
-#include <fstream>
+﻿#include "Resume.h"
 #include <iostream>
+#include <fstream>
+#include <iomanip> // Để căn chỉnh text
 
-void saveResume(const std::string& filename, const User& user, matrixStack& undo, matrixStack& redo, int** matrix, int n, int goal, int undo_redo, int speed, int countdown) {
-    std::ofstream outFile(filename, std::ios::binary);
-    if (!outFile) return;
+#define SAVE_FILE "savegame.dat"
 
-    user.writeToFile(outFile);
+using namespace std;
 
-    outFile.write((char*)&n, sizeof(int));
-    outFile.write((char*)&goal, sizeof(int));
-    outFile.write((char*)&undo_redo, sizeof(int));
-    outFile.write((char*)&speed, sizeof(int));
-    outFile.write((char*)&countdown, sizeof(int));
-
-    for (int i = 0; i < n; ++i)
-        for (int j = 0; j < n; ++j)
-            outFile.write((char*)&matrix[i][j], sizeof(int));
-
-    undo.writeToFile(outFile);
-    redo.writeToFile(outFile);
-
-    outFile.close();
+void printBoxedMessage(const string& message) {
+    int width = message.length() + 4;
+    cout << "\n" << string(width, '=') << "\n";
+    cout << "| " << message << " |\n";
+    cout << string(width, '=') << "\n\n";
 }
 
-bool loadResume(const std::string& filename, User& user, matrixStack& undo, matrixStack& redo, int**& matrix, int& n, int& goal, int& undo_redo, int& speed, int& countdown) {
-    std::ifstream inFile(filename, std::ios::binary);
-    if (!inFile) return false;
+void deleteSavedGame() {
+    string currentUsername;
+    string saveFile = currentUsername + SAVE_FILE;
+    if (remove(saveFile.c_str()) == 0)
+        printBoxedMessage("Save file deleted.");
+    else
+        printBoxedMessage("No save file found to delete.");
+}
 
-    user.readFromFile(inFile);
-
-    inFile.read((char*)&n, sizeof(int));
-    inFile.read((char*)&goal, sizeof(int));
-    inFile.read((char*)&undo_redo, sizeof(int));
-    inFile.read((char*)&speed, sizeof(int));
-    inFile.read((char*)&countdown, sizeof(int));
-
-    matrix = new int* [n];
-    for (int i = 0; i < n; ++i) {
-        matrix[i] = new int[n];
-        for (int j = 0; j < n; ++j) {
-            inFile.read((char*)&matrix[i][j], sizeof(int));
-        }
+// Lưu trạng thái game vào file nhị phân
+void saveGame(int** matrix, int n, unsigned int score) {
+    ofstream outFile(SAVE_FILE, ios::binary);
+    if (!outFile) {
+        printBoxedMessage("❌ Cannot open file!");
+        return;
     }
 
-    undo.readFromFile(inFile);
-    redo.readFromFile(inFile);
+    outFile.write(reinterpret_cast<char*>(&n), sizeof(n)); // Lưu kích thước bảng
+    outFile.write(reinterpret_cast<char*>(&score), sizeof(score)); // Lưu điểm số
+
+    for (int i = 0; i < n; ++i) {
+        outFile.write(reinterpret_cast<char*>(matrix[i]), n * sizeof(int));
+    }
+
+    outFile.close();
+    printBoxedMessage("✅ Game saved successfully!");
+}
+
+// Tải trạng thái game từ file nhị phân
+bool loadGame(int**& matrix, int n, unsigned int& score) {
+    ifstream inFile(SAVE_FILE, ios::binary);
+    if (!inFile) {
+        printBoxedMessage("❌ Cannot download file!!!!.");
+        return false;
+    }
+
+    int savedN;
+    inFile.read(reinterpret_cast<char*>(&savedN), sizeof(savedN));
+    if (savedN != n) {
+        printBoxedMessage("❌ Kich thuoc bang khong phu hop!");
+        return false;
+    }
+
+    inFile.read(reinterpret_cast<char*>(&score), sizeof(score));
+
+    if (matrix != nullptr) {
+        for (int i = 0; i < n; ++i) delete[] matrix[i];
+        delete[] matrix;
+    }
+
+    matrix = new int* [n];
+    for (int i = 0; i < n; ++i)
+        matrix[i] = new int[n];
+
+    for (int i = 0; i < n; ++i) {
+        inFile.read(reinterpret_cast<char*>(matrix[i]), n * sizeof(int));
+    }
 
     inFile.close();
+    printBoxedMessage("✅ Game loaded successfully!");
     return true;
-}
-
-bool hasResume(const std::string& filename) {
-    std::ifstream inFile(filename, std::ios::binary);
-    return inFile.good();
-}
-
-void deleteResume(const std::string& filename) {
-    std::remove(filename.c_str());
 }

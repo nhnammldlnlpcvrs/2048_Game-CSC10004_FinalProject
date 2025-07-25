@@ -134,36 +134,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Board.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameFunction.cpp" />
-    <ClCompile Include="Global.cpp" />
-    <ClCompile Include="Logic.cpp" />
-    <ClCompile Include="MatrixStack.cpp" />
-    <ClCompile Include="Mutex.cpp" />
-    <ClCompile Include="Mutex.h" />
-    <ClCompile Include="Rendered.cpp" />
+    <ClCompile Include="Game_function.cpp" />
+    <ClCompile Include="LeaderBoard.cpp" />
+    <ClCompile Include="LoginUser.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Register.cpp" />
     <ClCompile Include="Resume.cpp" />
-    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="src.cpp" />
-    <ClCompile Include="Time.cpp" />
-    <ClCompile Include="TopPlayer.cpp" />
-    <ClCompile Include="User.cpp" />
+    <ClCompile Include="User_Auth.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Board.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameFunction.h" />
-    <ClInclude Include="Global.h" />
-    <ClInclude Include="Logic.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="MatrixStack.h" />
-    <ClInclude Include="Rendered.h" />
+    <ClInclude Include="Game_function.h" />
+    <ClInclude Include="LeaderBoard.h" />
+    <ClInclude Include="LoginUser.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Register.h" />
     <ClInclude Include="Resume.h" />
-    <ClInclude Include="Sound.h" />
-    <ClInclude Include="Time.h" />
-    <ClInclude Include="TopPlayer.h" />
-    <ClInclude Include="User.h" />
+    <ClInclude Include="User_Auth.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

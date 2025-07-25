@@ -1,39 +1,14 @@
 ﻿#pragma once
-
+#include <iostream>
+#include <fstream>
 #include <string>
-#include "User.h"
-#include "MatrixStack.h"
 
-// Lưu trạng thái game vào file resume
-void saveResume(
-    const std::string& filename,
-    const User& user,
-    matrixStack& undo,
-    matrixStack& redo,
-    int** matrix,
-    int n,
-    int goal,
-    int undo_redo,
-    int speed,
-    int countdown
-);
+using namespace std;
 
-// Đọc trạng thái game từ file resume
-bool loadResume(
-    const std::string& filename,
-    User& user,
-    matrixStack& undo,
-    matrixStack& redo,
-    int**& matrix,
-    int& n,
-    int& goal,
-    int& undo_redo,
-    int& speed,
-    int& countdown
-);
+void deleteSavedGame();
 
-// Kiểm tra file resume có tồn tại không
-bool hasResume(const std::string& filename);
+// Lưu trạng thái game vào file nhị phân
+void saveGame(int** matrix, int n, unsigned int score);
 
-// Xóa file resume khi không cần dùng nữa
-void deleteResume(const std::string& filename);
+// Tải trạng thái game từ file nhị phân
+bool loadGame(int**& matrix, int n, unsigned int& score);
